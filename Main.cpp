@@ -3,23 +3,20 @@
 
 #include"SudokuBoard.h"
 
-/* Ideas
-    * Add an input constructor to the SudokuBoard that removes the need to use a text file. Add a flag that indicates
-      whether to use the input constructor or the file.
-
-*/
 
 /*
-    * The program's entry-point function.
-
-    * Notes:
-        (a). Simply place the name of the file that contains the sudoku you wish to solve into the constructor.
-         
+* The entry-point function.
 */
-int main()
+int main(int argc, char* argv[])
 {
-    // (a). Create the sudoku.
-    SudokuBoard l_sudoku("sudoku_33_2.txt");
+    if (argc == 1)
+    {
+        std::cout << "No sudoku file was specified. Please run the program again with a command line parameter that corresponds to a sudoku file (see README).\n";
+        return EXIT_FAILURE;
+    }
+
+    // Create the sudoku.
+    SudokuBoard l_sudoku(argv[1]);
 
     // Output the (unsolved) sudoku.
     std::cout << "Unsolved:\n" 
@@ -40,4 +37,5 @@ int main()
         std::cout << "\nThe given sudoku has no solution.\n";
     }
 
+    return EXIT_SUCCESS;
 }
